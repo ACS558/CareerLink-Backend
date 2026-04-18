@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
+import Student from "./src/models/Student.js";
+import Application from "./src/models/Application.js";
 
 // ─── REPLACE WITH YOUR CONNECTION STRING ─────────────────────────────────────
 const MONGO_URI = process.env.MONGODB_URI;
 
-const JOB_ID = "";
-const RECRUITER_ID = "";
+const JOB_ID = "69e2824b25d73dbcd833f793";
+const RECRUITER_ID = "69e281dc25d73dbcd833f737";
 
 // ─── HELPER DATA ─────────────────────────────────────────────────────────────
 const strengths = [
@@ -47,69 +49,6 @@ const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 const randomDate = (start, end) =>
   new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-
-// ─── SCHEMAS ─────────────────────────────────────────────────────────────────
-const studentSchema = new mongoose.Schema(
-  {
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    registrationNumber: String,
-    academicInfo: {
-      branch: String,
-      cgpa: Number,
-      backlogs: { type: Number, default: 0 },
-    },
-    skills: [String],
-  },
-  { timestamps: true },
-);
-
-const applicationSchema = new mongoose.Schema(
-  {
-    jobId: { type: mongoose.Schema.Types.ObjectId, ref: "Job", required: true },
-    studentId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Student",
-      required: true,
-    },
-    recruiterId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Recruiter",
-      required: true,
-    },
-    status: {
-      type: String,
-      enum: ["applied", "shortlisted", "rejected", "selected", "pending"],
-      default: "applied",
-    },
-    atsScore: {
-      score: { type: Number, min: 0, max: 100 },
-      strengths: [String],
-      weaknesses: [String],
-      recommendation: {
-        type: String,
-        enum: ["Highly recommended", "Recommended", "Maybe", "Not recommended"],
-      },
-      calculatedAt: Date,
-    },
-    coverLetter: String,
-    appliedAt: { type: Date, default: Date.now },
-    shortlistedAt: Date,
-    shortlistedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    rejectedAt: Date,
-    rejectionReason: String,
-    selectedAt: Date,
-    recruiterNotes: String,
-  },
-  { timestamps: true },
-);
-
-applicationSchema.index({ jobId: 1, studentId: 1 }, { unique: true });
-
-const Student =
-  mongoose.models.Student || mongoose.model("Student", studentSchema);
-const Application =
-  mongoose.models.Application ||
-  mongoose.model("Application", applicationSchema);
 
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 const main = async () => {

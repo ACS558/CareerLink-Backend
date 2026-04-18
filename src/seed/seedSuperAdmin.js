@@ -9,7 +9,7 @@ dotenv.config();
 
 const seedSuperAdmin = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
 
     console.log("MongoDB connected");
 
@@ -20,11 +20,9 @@ const seedSuperAdmin = async () => {
       process.exit();
     }
 
-    const password = await bcrypt.hash("admin123", 10);
-
     const user = await User.create({
       email: "superadmin@college.edu",
-      password,
+      password: "admin123",
       role: "admin",
       isVerified: true,
       isActive: true,
