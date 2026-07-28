@@ -1421,10 +1421,6 @@ footer
 - `test`: Adding tests
 - `chore`: Maintenance tasks
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👥 Authors
 
 **CareerLink Development Team**
@@ -1444,18 +1440,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Cloudinary for file storage solutions
 - All open-source contributors
 
-## 📞 Support
-
-For support, email: support@careerlink.com or create an issue in the repository.
-
-## 🔗 Links
-
-- **Frontend Repository**: [CareerLink Frontend](https://github.com/yourusername/careerlink-frontend)
-- **Live Frontend**: [https://career-link-frontend-henna.vercel.app](https://career-link-frontend-henna.vercel.app)
-- **Live Backend**: [https://careerlink-backend-itv6.onrender.com](https://careerlink-backend-itv6.onrender.com)
-- **API Documentation**: [Postman Collection](link-to-postman)
-
----
 
 **Made with ❤️ by CareerLink Team**
 
